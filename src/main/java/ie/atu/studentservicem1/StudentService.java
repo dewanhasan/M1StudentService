@@ -8,14 +8,20 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private List<StudentDetails> studentList = new ArrayList<>();
+    private final DatabaseRepo databaseRepo;
+
+    public StudentService(DatabaseRepo databaseRepo) {
+        this.databaseRepo = databaseRepo;
+    }
+
+    //private List<StudentDetails> studentList = new ArrayList<>();
 
     public List<StudentDetails> getAllStudents() {
-        return studentList;
+
+        return databaseRepo.findAll();
     }
 
     public StudentDetails addStudent(StudentDetails studentDetails) {
-        studentList.add(studentDetails);
-        return studentDetails;
+        return databaseRepo.save(studentDetails);
     }
 }
