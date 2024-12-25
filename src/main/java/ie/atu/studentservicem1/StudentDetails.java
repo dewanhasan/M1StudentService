@@ -21,7 +21,10 @@ public class StudentDetails {
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
-    private String name;
+    private String firstname;
+
+    @NotBlank(message = "Name is mandatory")
+    private String lastname;
 
     @NotBlank(message = "Email is mandatory")
     private String email;

@@ -21,7 +21,26 @@ public class StudentService {
         return databaseRepo.findAll();
     }
 
+    public StudentDetails getDetailsbylastname(String lastname){
+        return databaseRepo.findByLastname(lastname).get();
+    }
+
     public StudentDetails addStudent(StudentDetails studentDetails) {
         return databaseRepo.save(studentDetails);
+    }
+
+    public List<StudentDetails> deleteStudentById(Long id){
+        databaseRepo.deleteById(id);
+        return databaseRepo.findAll();
+    }
+
+    public StudentDetails updateStudentById(Long id, StudentDetails studentDetails) {
+        StudentDetails existingStudents = databaseRepo.findById(id).get();
+
+        existingStudents.setFirstname(studentDetails.getFirstname());
+        existingStudents.setLastname(studentDetails.getLastname());
+        existingStudents.setEmail(studentDetails.getEmail());
+
+        return databaseRepo.save(existingStudents);
     }
 }
