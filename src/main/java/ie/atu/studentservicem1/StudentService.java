@@ -40,6 +40,9 @@ public class StudentService {
         existingStudents.setFirstname(studentDetails.getFirstname());
         existingStudents.setLastname(studentDetails.getLastname());
         existingStudents.setEmail(studentDetails.getEmail());
+        existingStudents.setDob(studentDetails.getDob());
+        existingStudents.setAddress(studentDetails.getAddress());
+        existingStudents.setContact(studentDetails.getContact());
 
         return databaseRepo.save(existingStudents);
     }
