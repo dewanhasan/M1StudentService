@@ -60,8 +60,4 @@ public class StudentController {
         StudentDetails updatedStudent = studentService.updateStudentById(id, studentDetails);
         return ResponseEntity.ok(updatedStudent);
     }
-
-
-
-
 }
