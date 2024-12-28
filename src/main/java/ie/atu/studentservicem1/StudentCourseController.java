@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 public class StudentCourseController {
@@ -23,4 +25,13 @@ public class StudentCourseController {
         studentCourseService.RegisterStudentwithCourse(studentCourseRequest);
         return ResponseEntity.ok("Student confirmed course.");
     }
+
+    @PostMapping("/register-with-Courses")
+    public ResponseEntity<Object> registerStudentWcourses(@RequestBody StudentCourseRequest studentCourseRequest){
+        System.out.println("Student details with Selected Courses: " + studentCourseRequest.getStudentDetails() + " || "
+        + studentCourseRequest.getCourseList());
+        Object response = registrationClient.registedStudentAndCourses(studentCourseRequest);
+        return ResponseEntity.ok(response);
+    }
+
 }
