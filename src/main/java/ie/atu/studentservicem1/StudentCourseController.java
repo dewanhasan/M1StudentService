@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentCourseController {
 
     private final StudentCourseService studentCourseService;
+    private final RegistrationClient registrationClient;
 
-    public StudentCourseController(StudentCourseService studentCourseService) {
+    public StudentCourseController(StudentCourseService studentCourseService, RegistrationClient registrationClient) {
         this.studentCourseService = studentCourseService;
+        this.registrationClient = registrationClient;
     }
 
     @PostMapping("/student-with-course")

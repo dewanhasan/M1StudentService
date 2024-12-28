@@ -22,6 +22,5 @@ public class StudentCourseService {
             course.setStudentId(studentId);
             courseService.addCourse(course);
         }
-
     }
 }
