@@ -10,4 +10,7 @@ import java.util.Map;
 public interface RegistrationClient {
     @PostMapping("/approved")
     Map<String, String> confirmRegistration(@RequestBody StudentDetails studentDetails);
+
+    @PostMapping("/register")
+    Map<String, Object> registedStudentAndCourses(@RequestBody StudentCourseRequest studentCourseRequest);
 }
