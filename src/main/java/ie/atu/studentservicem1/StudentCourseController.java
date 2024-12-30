@@ -28,8 +28,7 @@ public class StudentCourseController {
 
     @PostMapping("/register-with-Courses")
     public ResponseEntity<Object> registerStudentWcourses(@RequestBody StudentCourseRequest studentCourseRequest){
-        System.out.println("Student details with Selected Courses: " + studentCourseRequest.getStudentDetails() + " || "
-        + studentCourseRequest.getCourseList());
+        System.out.println("Student details with Selected Courses: " + studentCourseRequest.getStudentDetails());
         Object response = registrationClient.registedStudentAndCourses(studentCourseRequest);
         return ResponseEntity.ok(response);
     }

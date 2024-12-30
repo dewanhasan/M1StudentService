@@ -12,5 +12,5 @@ public interface RegistrationClient {
     Map<String, String> confirmRegistration(@RequestBody StudentDetails studentDetails);
 
     @PostMapping("/register")
-    Map<String, Object> registedStudentAndCourses(@RequestBody StudentCourseRequest studentCourseRequest);
+    Map<String, String> registedStudentAndCourses(@RequestBody StudentCourseRequest studentCourseRequest);
 }
