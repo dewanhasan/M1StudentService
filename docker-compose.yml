@@ -1,0 +1,22 @@
+version: '4.0'
+
+services:
+  StudentServiceM1:
+    image: studentservicem1:latest
+    ports:
+      - 8081:8081
+    networks:
+      - cao_network
+
+
+  RegistrationServiceM2:
+    image: registrationservicem2:latest
+    ports:
+      - 8082:8082
+    networks:
+      - cao_network
+
+networks:
+  cao_network:
+    driver: bridge
+
