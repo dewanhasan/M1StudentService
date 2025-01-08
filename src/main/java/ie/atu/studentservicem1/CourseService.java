@@ -11,11 +11,11 @@ public class CourseService {
     public CourseRepository courseRepository;
 
     @Autowired
-
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
+    //Service functionalities for getting all courses, getting a course by student id and adding a course
     public List<Course> getCourse() {
         return courseRepository.findAll();
     }

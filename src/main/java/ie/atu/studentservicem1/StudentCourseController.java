@@ -15,22 +15,24 @@ public class StudentCourseController {
     private final StudentCourseService studentCourseService;
     private final RegistrationClient registrationClient;
 
+
     public StudentCourseController(StudentCourseService studentCourseService, RegistrationClient registrationClient) {
         this.studentCourseService = studentCourseService;
         this.registrationClient = registrationClient;
     }
 
+    //this endpoint creates a student along with the students courses.
     @PostMapping("/student-with-course")
     public ResponseEntity<String> confirmStudentCourse(@RequestBody StudentCourseRequest studentCourseRequest) {
         studentCourseService.RegisterStudentwithCourse(studentCourseRequest);
         return ResponseEntity.ok("Student confirmed course.");
     }
 
+    //Connects to the second microservice
     @PostMapping("/register-with-Courses")
     public ResponseEntity<Object> registerStudentWcourses(@RequestBody StudentCourseRequest studentCourseRequest){
-        System.out.println("Student details with Selected Courses: " + studentCourseRequest.getStudentDetails());
+        System.out.println("Student details: " + studentCourseRequest.getStudentDetails());
         Object response = registrationClient.registedStudentAndCourses(studentCourseRequest);
         return ResponseEntity.ok(response);
     }
-
 }

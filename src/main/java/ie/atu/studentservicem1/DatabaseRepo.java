@@ -7,5 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface DatabaseRepo extends JpaRepository<StudentDetails, Long> {
+    //Database interface
     Optional<StudentDetails> findByLastname(String lastname);
 }
