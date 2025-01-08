@@ -1,5 +1,6 @@
 package ie.atu.studentservicem1;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,11 +11,11 @@ public class StudentService {
 
     private final DatabaseRepo databaseRepo;
 
+    @Autowired
     public StudentService(DatabaseRepo databaseRepo) {
         this.databaseRepo = databaseRepo;
     }
 
-    //private List<StudentDetails> studentList = new ArrayList<>();
 
     public List<StudentDetails> getAllStudents() {
 

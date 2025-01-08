@@ -8,8 +8,6 @@ import java.util.Map;
 
 @FeignClient(name = "registration", url = "${feign.url}")
 public interface RegistrationClient {
-    @PostMapping("/approved")
-    Map<String, String> confirmRegistration(@RequestBody StudentDetails studentDetails);
 
     @PostMapping("/register")
     Map<String, String> registedStudentAndCourses(@RequestBody StudentCourseRequest studentCourseRequest);

@@ -8,5 +8,6 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, String> {
 
+    //Course repository tp save courses to the database, can only be accessed with studentId
     List<Course> findByStudentId(Long studentId);
 }

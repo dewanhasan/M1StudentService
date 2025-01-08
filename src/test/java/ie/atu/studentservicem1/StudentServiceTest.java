@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class) // Enables Mockito in JUnit 5
+@ExtendWith(MockitoExtension.class) // Enables Mockito in JUnit
 public class StudentServiceTest {
 
     @Mock
@@ -29,7 +29,7 @@ public class StudentServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Create test StudentDetails objects
+        // Created test StudentDetails objects
         student1 = new StudentDetails();
         student1.setId(1L);
         student1.setFirstname("John");
@@ -50,11 +50,9 @@ public class StudentServiceTest {
     }
 
     @Test
-    void testAddStudent() {
-        // Arrange
+    void testAddStudent() {  // Test case for adding student
         when(databaseRepo.save(student1)).thenReturn(student1);
 
-        // Act
         StudentDetails savedStudent = studentService.addStudent(student1);
 
         // Assert
@@ -64,15 +62,14 @@ public class StudentServiceTest {
     }
 
     @Test
-    void testGetAllStudents() {
-        // Arrange
+    void testGetAllStudents() {  // Test case to fetch student details
+
         List<StudentDetails> mockedList = new ArrayList<>();
         mockedList.add(student1);
         mockedList.add(student2);
 
         when(databaseRepo.findAll()).thenReturn(mockedList);
 
-        // Act
         List<StudentDetails> allStudents = studentService.getAllStudents();
 
         // Assert
@@ -83,7 +80,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    void testGetDetailsByLastname() {
+    void testGetDetailsByLastname() {   // Test case to get a specific students details
         // Arrange
         String lastname = "Doe";
         when(databaseRepo.findByLastname(lastname)).thenReturn(Optional.of(student1));
@@ -98,14 +95,13 @@ public class StudentServiceTest {
     }
 
     @Test
-    void testDeleteStudentById() {
-        // Arrange
+    void testDeleteStudentById() {              // Test case for delete functionality
+
         List<StudentDetails> remainingAfterDelete = new ArrayList<>();
         remainingAfterDelete.add(student2);
-        // Suppose we delete student with ID=1, we'll mock what the repo returns afterward
+
         when(databaseRepo.findAll()).thenReturn(remainingAfterDelete);
 
-        // Act
         List<StudentDetails> updatedList = studentService.deleteStudentById(1L);
 
         // Assert
@@ -117,11 +113,10 @@ public class StudentServiceTest {
 
     @Test
     void testUpdateStudentById() {
-        // Arrange
-        // Let's assume student1 is the "existing" record in the database
+
         when(databaseRepo.findById(1L)).thenReturn(Optional.of(student1));
 
-        // We'll simulate updated data
+        // Simulate updated data
         StudentDetails updatedInfo = new StudentDetails();
         updatedInfo.setFirstname("Johnny");
         updatedInfo.setLastname("Doe");
@@ -132,7 +127,7 @@ public class StudentServiceTest {
 
         when(databaseRepo.save(any(StudentDetails.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        // Act
+
         StudentDetails result = studentService.updateStudentById(1L, updatedInfo);
 
         // Assert
@@ -153,8 +148,6 @@ public class StudentServiceTest {
         // If the repository can't find the lastname, it returns Optional.empty()
         when(databaseRepo.findByLastname("Unknown")).thenReturn(Optional.empty());
 
-        // If your code calls .get(), it will throw a NoSuchElementException
-        // which you might handle globally. We'll just show that here:
         assertThrows(java.util.NoSuchElementException.class,
                 () -> studentService.getDetailsbylastname("Unknown"));
 

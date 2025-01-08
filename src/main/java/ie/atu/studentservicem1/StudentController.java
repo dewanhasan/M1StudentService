@@ -14,15 +14,13 @@ public class StudentController {
     private final StudentService studentService;
     private final RegistrationClient registrationClient;
 
+    //Constructors
     public StudentController(StudentService studentService, RegistrationClient registrationClient) {
         this.studentService = studentService;
         this.registrationClient = registrationClient;
     }
 
-
-
-
-
+    // Controller endpoints for All the CRUD functionalities
     @GetMapping("/getAll")
     public ResponseEntity<List<StudentDetails>> getAllStudents(){
         List<StudentDetails> findAllStudents = studentService.getAllStudents();
@@ -42,12 +40,6 @@ public class StudentController {
         return ResponseEntity.ok(addedStudent);
     }
 
-    @PostMapping("/approve-and-register")
-    public ResponseEntity<Object> approveAndRegister(@Valid @RequestBody StudentDetails studentDetails){
-        System.out.println("Student Details Received at Student Controller: " + studentDetails);
-        Object response = registrationClient.confirmRegistration(studentDetails);
-        return ResponseEntity.ok(response);
-    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<List<StudentDetails>> removeStudent(@PathVariable Long id){
